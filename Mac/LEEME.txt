@@ -1,0 +1,67 @@
+SCRIPTS DE AVID PARA MAC
+========================
+Sirven en cualquier Mac (Intel o Apple Silicon) y en cualquier macOS de los
+últimos años. Se usan con doble clic en los archivos .command, como los .bat
+en Windows.
+
+
+1) PRIMERA VEZ: HABILITAR LOS ARCHIVOS (una sola vez)
+-----------------------------------------------------
+macOS bloquea los scripts que vienen de internet. Para habilitarlos:
+
+  1. Abrí la Terminal (Aplicaciones > Utilidades > Terminal).
+  2. Escribí esto, con un espacio al final, SIN apretar Enter:
+         xattr -cr
+  3. Arrastrá la carpeta "Avid_Scripts_Mac" a la ventana de la Terminal.
+  4. Apretá Enter.
+
+Si igual aparece un aviso de que no se puede abrir: Configuración del
+Sistema > Privacidad y seguridad > abajo de todo, "Abrir igual".
+
+
+2) PYTHON (solo para Avid_MXF_Folder y Copiar Entrevistas)
+----------------------------------------------------------
+Renombrar MXF Folders NO necesita nada.
+
+Los otros dos necesitan Python 3. Si la Mac no lo tiene, el script avisa.
+Instalalo desde https://www.python.org/downloads/macos/
+(el instalador "macOS 64-bit universal2" sirve para Intel y Apple Silicon).
+
+La primera vez que abras uno de estos scripts va a decir "Preparando Python"
+y va a instalar pyavb y pyaaf2 en una carpeta propia (~/.avid_scripts).
+Necesita internet solo esa vez. No toca nada más del sistema.
+
+
+3) QUÉ HACE CADA UNO
+--------------------
+Avid_MXF_Folder.command
+    Igual que Avid_MXF_Folder.bat. Doble clic, arrastrá el bin (.avb) a la
+    ventana y Enter. Busca la media en todos los discos (/Volumes/...).
+    Cerrá Media Composer antes de aplicar.
+
+Renombrar MXF Folders/1_NUMERAR_v4.command
+Renombrar MXF Folders/2_RESTAURAR_v4.command
+    Igual que los .bat. Doble clic, arrastrá la carpeta que CONTIENE las
+    carpetas a renombrar (o Enter para elegirla en una ventana).
+    El _nombres_originales.csv es compatible con la versión de Windows:
+    se puede numerar en una máquina y restaurar en la otra.
+
+Copiar Entrevistas 23.98 a Bin Proj2398/copiar_entrevistas_2398.command
+Copiar Entrevistas 23.98 a Bin Proj2398/copiar_entrevistas_25.command
+    Igual que los .bat: primero muestra la vista previa y después pregunta
+    si copia. El bin destino tiene que estar cerrado en Avid.
+    Ya no tienen la ruta fija F:\ : buscan solos el disco donde está
+    "SOLRAC/_Avid Projects/...". Si hay dos discos con esa carpeta (por
+    ejemplo el original y un clon), completá DISCO en el .py, por ejemplo:
+        DISCO = "/Volumes/SOLRAC_A1"
+    Estos .py también corren en Windows tal cual.
+
+
+4) TIPS
+-------
+- Al arrastrar algo a la Terminal, la Mac agrega "\" antes de los espacios.
+  Es normal; los scripts lo entienden.
+- En discos exFAT, la Mac crea archivos ocultos "._algo". Los scripts los
+  ignoran.
+- Si un .command no abre con doble clic ("no tenés permiso"), en la
+  Terminal escribí  chmod +x  , arrastrá el archivo y Enter.
